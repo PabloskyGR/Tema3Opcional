@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
+	// Abrimos el scanner
 	static Scanner sc = new Scanner(System.in);
 
+	// Método para mostrar el menú y pedir una opción al usuario
 	public static int menu() {
-
 		int opc;
 
 		System.out.println("  - - - - - Menú - - - - - ");
@@ -17,19 +18,21 @@ public class Main {
 		System.out.println(" | 0. Salir               |");
 		System.out.println("  - - - - - Menú - - - - -  ");
 		System.out.println();
-		System.out.println("Dime que quieras hacer:");
+		System.out.println("Dime qué quieres hacer:");
 		opc = sc.nextInt();
 
 		return opc;
 	}
 
-	public static int pedirNumero() {
-		int num = -1;
+	// Método para pedir al usuario que introduzca un número
+	public static double pedirNumero() {
+		double num = -1;
 
+		// Comprobamos que el número sea válido
 		do {
 			try {
 				System.out.println("Dime el radio de la esfera:");
-				num = sc.nextInt();
+				num = sc.nextDouble();
 			} catch (InputMismatchException e) {
 				System.out.println("Error, el tipo introducido no es válido");
 			} finally {
@@ -41,15 +44,20 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		
-		Esfera esfera = new Esfera();
-		
+
+		// Creamos un objeto esfera
+		Esfera esfera;
+
+		// Variable donde guardaremos el número que introduzca el usuario y mostramos el
+		// menu llamando a los métodos
+		double radio = pedirNumero();
 		int opc = menu();
-		double num = pedirNumero();
-		
-		esfera = new Esfera(num);
-		
-		switch(opc) {
+
+		// Creamos un objeto Esfera con el valor del radio introducido
+		esfera = new Esfera(radio);
+
+		// Usamos un switch para realizar la operación que haya pedido el usuario
+		switch (opc) {
 		case 0:
 			System.out.println("Saliendo...");
 			break;
@@ -58,10 +66,10 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("El volumen de la esfera es de: " + esfera.volumen());
+			break;
 		}
-		
+
+		// Cerramos el scanner
 		sc.close();
-
 	}
-
 }

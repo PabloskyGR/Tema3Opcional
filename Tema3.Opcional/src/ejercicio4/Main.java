@@ -4,11 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	static Scanner sc = new Scanner(System.in);
 
+	// Método para mostrar el menú y obtener la opción del usuario
 	public static int menu() {
-
 		int opc;
 
 		System.out.println("  - - - - - Menú - - - - - ");
@@ -18,15 +18,17 @@ public class Main {
 		System.out.println(" | 0. Salir               |");
 		System.out.println("  - - - - - Menú - - - - -  ");
 		System.out.println();
-		System.out.println("Dime que quieras hacer:");
+		System.out.println("Dime qué quieres hacer:");
 		opc = sc.nextInt();
 
 		return opc;
 	}
 
+	// Método para solicitar al usuario un número entero que no sea negativo
 	public static int pedirNumero() {
 		int num = -1;
 
+		// Comprobamos que el número sea del tipo válido
 		do {
 			try {
 				System.out.println("Dime un número:");
@@ -42,12 +44,18 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		
+
+		// Variable donde gaurdaremos la opción que elija el usuario y mostramos el menu
 		int opc = menu();
-		int num;
-		double n, a;
 		
-		switch(opc) {
+		// Variable donde gaurdaremos el número que introduzca el usuario
+		int num;
+		
+		// Variable donde guardaremos el valor de 'n' y de 'a' que introduzca el usuario
+		double n, a;
+
+		// Usamos un switch para realizar la opción que haya elegido el usuario
+		switch (opc) {
 		case 0:
 			System.out.println("Saliendo...");
 			break;
@@ -58,16 +66,18 @@ public class Main {
 		case 2:
 			System.out.println("Dime valor de 'a' y de 'n': ");
 			a = sc.nextDouble();
-			n = sc.nextInt();
-			System.out.println("La potencia de " + a + " elevado a " + n + " es de: " + FuncionRecursiva.potencia(a, (int) n));
+			n = pedirNumero(); // Pedir un número entero positivo para la potencia
+			System.out.println(
+					"La potencia de " + a + " elevado a " + n + " es de: " + FuncionRecursiva.potencia(a, (int) n));
 			break;
-		case 3: 
+		case 3:
 			num = pedirNumero();
-			System.out.println("El número correspondiente de la serie de Fibonacci del número " + num + " es: " + FuncionRecursiva.serieFibonacci(num));
+			System.out.println("El número correspondiente de la serie de Fibonacci del número " + num + " es: "
+					+ FuncionRecursiva.serieFibonacci(num));
+			break;
 		}
-		
+
+		// Cerrar el scanner
 		sc.close();
-
 	}
-
 }
